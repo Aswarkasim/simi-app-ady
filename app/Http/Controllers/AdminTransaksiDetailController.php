@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use App\Models\Transaksi;
 use App\Models\TransaksiDetail;
 use Illuminate\Http\Request;
@@ -14,9 +15,13 @@ class AdminTransaksiDetailController extends Controller
         $transaksi_id = $request->transaksi_id;
         $produk_id = $request->hidden_produk_id;
 
+        $produk = Produk::find($produk_id);
         $transaksi = Transaksi::find($transaksi_id);
         $tr_detail = TransaksiDetail::whereTransaksiId($transaksi_id)->whereProdukId($produk_id)->first();
 
+
+        $harga_diskon = $request->subtotal * $produk->promo_diskon / 100;
+        $subtotal = $request->subtotal - $harga_diskon;
         if ($tr_detail == false) {
             $data = [
                 'transaksi_id'      => $transaksi_id,
@@ -24,13 +29,14 @@ class AdminTransaksiDetailController extends Controller
                 'produk_name'         => $request->hidden_produk_name,
                 'quantity'          => $request->qty,
                 'harga_satuan'      => $request->hidden_harga_satuan,
-                'subtotal'          => $request->subtotal,
+                'promo_diskon'      => $produk->promo_diskon,
+                'subtotal'          => $subtotal,
             ];
             $td = TransaksiDetail::create($data);
         } else {
             $data = [
                 'quantity'          => $tr_detail->quantity + $request->qty,
-                'subtotal'          => $tr_detail->subtotal + $request->subtotal,
+                'subtotal'          => $tr_detail->subtotal + $subtotal,
             ];
             $tr_detail->update($data);
         }

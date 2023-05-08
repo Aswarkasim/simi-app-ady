@@ -13,7 +13,7 @@
 
           <div class="form-group">
             <label for="">Kode Produk</label>
-            <input type="text" class="form-control  @error('kode') is-invalid @enderror"  name="kode"  value="{{isset($produk) ? $produk->kode : old('kode')}}" placeholder="Kode">
+            <input type="text" class="form-control  @error('kode') is-invalid @enderror"  name="kode"  value="{{isset($produk) ? $produk->kode : $random_number}}" placeholder="Kode">
              @error('kode')
                 <div class="invalid-feedback">
                   {{$message}}
@@ -68,6 +68,23 @@
           </div>
 
 
+          @if (auth()->user()->role == 'manager')
+              
+
+          <div class="form-group">
+            <label for="">Promo Diskon (Dalam Persen)</label>
+            <input type="number" class="form-control  @error('promo_diskon') is-invalid @enderror"  name="promo_diskon"  value="{{isset($produk) ? $produk->promo_diskon : old('promo_diskon')}}" placeholder="Promo Diskon">
+             @error('promo_diskon')
+                <div class="invalid-feedback">
+                  {{$message}}
+                </div>
+             @enderror
+          </div>
+
+          @endif
+
+
+
 
 
           <a href="/admin/produk" class="btn btn-info "><i class="fa fa-arrow-left"></i> Kembali</a>
@@ -81,26 +98,6 @@
 
 
 
-<form>
-  <div class="form-group">
-      <label for="code">Code:</label>
-      <input type="text" name="kode" id="code" class="form-control">
-      <span id="error-code" class="text-danger"></span>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
-<div class="mb-3">
-  <label for="slug" class="form-label">Slug</label>
-  <input type="text"  value="{{old('slug')}}" class="form-control  @error('slug') is-invalid @enderror" name="slug" id="slug">
-   @error('slug')
-      <div class="invalid-feedback">
-        {{$message}}
-      </div>
-  @enderror
-</div>
 
 <script src="/plugins/jquery/jquery.min.js"></script>
 

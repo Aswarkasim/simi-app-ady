@@ -105,6 +105,7 @@ class AdminTransaksiController extends Controller
         $transaksi = Transaksi::with('transaksidetail')->find($id);
         $data = [
             'title'   => 'Tambah Transaksi',
+            'produk'    => Produk::get(),
             'transaksi' => $transaksi,
             'content' => 'admin/transaksi/add'
         ];

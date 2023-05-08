@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('produk_id');
             $table->string('produk_name')->nullable();
             $table->integer('quantity');
+            $table->integer('promo_diskon')->default(0);
             $table->decimal('price', 10, 2);
 
             $table->foreign('transaksi_id')

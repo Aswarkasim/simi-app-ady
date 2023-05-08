@@ -8,13 +8,34 @@
 
             @csrf
   
-            <div class="form-group">
+            {{-- <div class="form-group">
               <div class="row">
                 <div class="col-md-4">
                   <label for="">Kode Produk</label>
                 </div>
                 <div class="col-md-8">
                   <input type="text" id="kode-produk" required class="form-control  @error('kode') is-invalid @enderror"  name="kode"  value="{{isset($transaksi) ? $transaksi->kode : old('kode')}}" placeholder="Kode">
+                  @error('kode')
+                      <div class="invalid-feedback">
+                        {{$message}}
+                      </div>
+                  @enderror
+                </div>
+              </div>
+            </div> --}}
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="">Kode Produk</label>
+                </div>
+                <div class="col-md-8">
+                  <select name="kode" id="kode-produk" class="form-control" id="">
+                    <option value="">--Kode Produk--</option>
+                    @foreach ($produk as $item)
+                        <option value="{{ $item->kode }}">{{ $item->kode.' - '.$item->name }}</option>
+                    @endforeach
+                  </select>
                   @error('kode')
                       <div class="invalid-feedback">
                         {{$message}}
@@ -97,6 +118,7 @@
             <th>Produk</th>
             <th>Harga</th>
             <th>QTY</th>
+            <th>Promo Diskon</th>
             <th>Subtotal</th>
             <th>#</th>
           </tr>
@@ -108,6 +130,7 @@
             <td>{{ $item->produk_name }}</td>
             <td>{{ format_rupiah($item->harga_satuan) }}</td>
             <td>{{ $item->quantity }}</td>
+            <td>{{ $item->promo_diskon.'%' }}</td>
             <td>{{ format_rupiah($item->subtotal) }}</td>
             <td><a href="/admin/transaksi/detail/delete?id={{ $item->id }}"><i class="fas fa-times"></i></a></td>
           </tr>

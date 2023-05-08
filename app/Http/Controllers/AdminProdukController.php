@@ -46,6 +46,7 @@ class AdminProdukController extends Controller
         $data = [
             'title'   => 'Tambah Produk',
             'kategori' => Kategori::get(),
+            'random_number' => str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT),
             'content' => 'admin/produk/add'
         ];
         return view('admin/layouts/wrapper', $data);
@@ -117,11 +118,16 @@ class AdminProdukController extends Controller
         //
         $produk = Produk::find($id);
         $data = $request->validate([
-            'name'          => 'required|min:3|unique:produks,name,' . $produk->id,
+            // 'name'          => 'required|min:3|unique:produks,name,' . $produk->id,
+            'kode'              => 'required|unique:produks,kode,' . $produk->id,
+            'name'              => 'required',
+            'kategori_id'       => 'required',
+            'harga'             => 'required',
+            'stok'              => 'required',
+
         ]);
 
-
-
+        $data['promo_diskon']   = $request->promo_diskon;
         $produk->update($data);
         toast()->success('Sukses', 'Produk telah diedit');
         return redirect('/admin/produk/' . $produk->id . '/edit');

@@ -20,9 +20,9 @@
   <thead>
     <tr>
       <th>No</th>
-      <th>Kode</th>
+      <th>Barcode</th>
       <th>Nama</th>
-      <th>Kategori</th>
+      <th>Promo</th>
       <th>Harga Satuan</th>
       <th>Stok Toko</th>
       <th>Stok Gudang</th>
@@ -35,9 +35,14 @@
         
     <tr>
       <td width="50px">{{$produk->firstItem() + $loop->index}}</td>
-      <td>{{$row->kode}} </td>
+      {{-- <td>{!! DNS1D::getBarcodeHTML($row->kode)!!}</td> --}}
+      <td>
+        <small>{{$row->kode}}</small>
+        {!! DNS1D::getBarcodeHTML($row->kode, 'C39') !!}
+      </td>
       <td>{{$row->name}} </td>
-      <td>{{isset($row->kategori) ? $row->kategori->name : 'Kategori kosong'}} </td>
+      {{-- <td>{{isset($row->kategori) ? $row->kategori->name : 'Kategori kosong'}} </td> --}}
+      <td>{{ $row->promo_diskon.'%' }} </td>
       <td>{{ format_rupiah($row->harga)}} </td>
       <td>{{ format_angka($row->stok)}} </td>
       <td>{{ format_angka($row->stok_gudang)}} </td>
