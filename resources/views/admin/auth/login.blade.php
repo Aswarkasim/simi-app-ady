@@ -121,7 +121,7 @@
 <div class="container-fluid">
   <div class="row">
       <div class="col-md-8 p-0">
-          <img src="/img/cover.jpeg" class="img-fluid">
+          <img src="/img/cover_phinisi.jpeg" class="img-fluid">
           <div class="overlay"></div>
           <div class="text">
               <h2>Sistem Informasi Minimarket</h2>
