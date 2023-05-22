@@ -133,6 +133,7 @@
           <a href="#"><b>ADMIN</b> SIMI</a>
         </div> 
         {{-- adakah --}}
+        {{-- adakah --}}
 
         <p class="login-box-msg">Masuk untuk mengelola data</p>
 
