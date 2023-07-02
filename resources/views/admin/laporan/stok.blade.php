@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group">
-              <label for="">Tanggal Awal</label>
+              <label for="">Tanggal Akhir</label>
               <input type="date" class="form-control  @error('tanggal_akhir') is-invalid @enderror" required  name="tanggal_akhir"  value="{{isset($produk) ? $produk->tanggal_akhir : old('tanggal_akhir')}}" placeholder="Stok">
                @error('tanggal_akhir')
                   <div class="invalid-feedback">

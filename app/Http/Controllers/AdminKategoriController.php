@@ -59,9 +59,6 @@ class AdminKategoriController extends Controller
     public function store(Request $request)
     {
         //
-        // print_r($request);
-        // die;
-        // Re Password harusnya tidak masuk
         $data = $request->validate([
             'name'          => 'required|unique:kategoris|min:3',
         ]);

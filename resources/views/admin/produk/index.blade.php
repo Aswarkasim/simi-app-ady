@@ -81,5 +81,7 @@
 </div>
 
 <!-- /.card-body -->
-
+{{-- <script>
+  window.print()
+</script> --}}
 

@@ -21,7 +21,7 @@ class AdminStokController extends Controller
         $stok = Stok::latest()->paginate(10);
 
         if ($cari) {
-            $stok = Stok::where('name', 'like', '%' . $cari . '%')->latest()->paginate(10);
+            $stok = Stok::where('nama_produk', 'like', '%' . $cari . '%')->latest()->paginate(10);
         } else {
             $stok = Stok::latest()->paginate(10);
         }

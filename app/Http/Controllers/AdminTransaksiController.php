@@ -21,7 +21,7 @@ class AdminTransaksiController extends Controller
         $transaksi = Transaksi::latest()->paginate(10);
 
         if ($cari) {
-            $transaksi = Transaksi::where('name', 'like', '%' . $cari . '%')->latest()->paginate(10);
+            $transaksi = Transaksi::where('created_at', 'like', '%' . $cari . '%')->latest()->paginate(10);
         } else {
             $transaksi = Transaksi::latest()->paginate(10);
         }
