@@ -110,7 +110,7 @@ class AdminStokController extends Controller
         $stok = Stok::find($id);
         $data = [
             'title'   => 'Tambah Stok',
-            'stok_gudang' => $stok,
+            'stok' => $stok,
             'produk' => Produk::get(),
             'content' => 'admin/stok/add'
         ];
