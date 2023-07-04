@@ -127,13 +127,17 @@ class AdminProdukController extends Controller
 
         ]);
 
+        $data_diskon = 0;
         $diskon =  $request->promo_diskon;
 
         if ($diskon) {
-            $data['promo_diskon']   = $diskon;
+            $data_diskon = $diskon;
         } else {
-            $data['promo_diskon']   = $produk->diskon;
+            $data_diskon   = $produk->diskon;
         }
+
+        $data['promo_diskon'] = $data_diskon;
+
         $produk->update($data);
         toast()->success('Sukses', 'Produk telah diedit');
         return redirect('/admin/produk/' . $produk->id . '/edit');
