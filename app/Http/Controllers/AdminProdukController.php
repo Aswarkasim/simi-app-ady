@@ -130,15 +130,15 @@ class AdminProdukController extends Controller
         $data_diskon = 0;
         $diskon =  $request->promo_diskon;
 
+
+        if ($diskon == null) {
+            $data_diskon   = $produk->diskon;
+        } else {
+            $data_diskon = $diskon;
+        }
         dd($data_diskon);
 
-        if ($diskon != null) {
-            $data_diskon = $diskon;
-        } else {
-            $data_diskon   = $produk->diskon;
-        }
-
-        // $data['promo_diskon'] = $data_diskon;
+        $data['promo_diskon'] = $data_diskon;
 
         $produk->update($data);
         toast()->success('Sukses', 'Produk telah diedit');
