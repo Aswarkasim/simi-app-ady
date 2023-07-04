@@ -130,7 +130,7 @@ class AdminProdukController extends Controller
         $data_diskon = 0;
         $diskon =  $request->promo_diskon;
 
-        if ($diskon) {
+        if ($diskon != null) {
             $data_diskon = $diskon;
         } else {
             $data_diskon   = $produk->diskon;
