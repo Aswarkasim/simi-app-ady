@@ -136,7 +136,8 @@ class AdminProdukController extends Controller
             $data_diskon   = $produk->diskon;
         }
 
-        $data['promo_diskon'] = $data_diskon;
+        dd($data_diskon);
+        // $data['promo_diskon'] = $data_diskon;
 
         $produk->update($data);
         toast()->success('Sukses', 'Produk telah diedit');
